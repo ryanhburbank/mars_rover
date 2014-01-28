@@ -28,7 +28,7 @@ module Parser
 
 	def parse_txt(file)
 		txt_file = File.open(file,"r")
-		output = txt_file.readlines
+		output   = txt_file.readlines
 		txt_file.close
 		output.empty? ? empty_error(file) : output.map {|e| e.sub("\n","")}
 	end

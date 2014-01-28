@@ -5,9 +5,9 @@ class Instruction
 	attr_reader :plateau_dimensions, :rovers
 	
 	def initialize(file)
-		parsed_file = parse(file)
+		parsed_file         = parse(file)
 		@plateau_dimensions = get_dimensions(parsed_file)
-		@rovers = get_rovers(parsed_file)
+		@rovers             = get_rovers(parsed_file)
 	end
 
 	private
