@@ -13,11 +13,11 @@ module Parser
 	private
 
 	def ext_error(file)
-		raise ArgumentError, "Error: #{file} extension is not supported!"
+		raise ArgumentError, "Error: (#{File.extname(file)}) extension is not supported!"
 	end
 
 	def empty_error(file)
-		raise ArgumentError, "Error: #{file} is empty!"
+		raise ArgumentError, "Error: (#{file}) is empty!"
 	end
 
 	def parse_csv(file)
