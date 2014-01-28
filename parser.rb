@@ -5,12 +5,12 @@ module Parser
 	
 	SUPPORTED_FORMATS = [".txt",".csv",".yml"]
 	
+	private
+
 	def parse(file)
 		ext_error(file) unless SUPPORTED_FORMATS.include? File.extname(file)
 		send("parse_" + File.extname(file)[1..-1], file)
 	end
-
-	private
 
 	def ext_error(file)
 		raise ArgumentError, "Error: (#{File.extname(file)}) extension is not supported!"
