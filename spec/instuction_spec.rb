@@ -9,8 +9,8 @@ describe "Instruction" do
 			instruction.should be_an_instance_of Instruction
 		end
 
-		it "sets @plateau_dimensions" do
-			instruction.plateau_dimensions.should eq ({ rows: 5, columns: 5 })
+		it "sets @dimensions" do
+			instruction.dimensions.should eq ({ rows: 6, columns: 6 })
 		end
 
 		it "sets @rovers" do
