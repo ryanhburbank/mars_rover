@@ -9,13 +9,13 @@ describe "Instruction" do
 			instruction.should be_an_instance_of Instruction
 		end
 
-		it "sets @plateau_dimensions" do
-			instruction.plateau_dimensions.should eq ({ rows: 5, columns: 5 })
+		it "sets @dimensions" do
+			instruction.dimensions.should eq ({ rows: 6, columns: 6 })
 		end
 
 		it "sets @rovers" do
-			instruction.rovers.should eq ({ rover1: { position: { x: 1, y: 2, heading: "N" }, moves: ["L","M","L","M","L","M","L","M","M"] },
-																		  rover2: { position: { x: 3, y: 3, heading: "E" }, moves: ["M","M","R","M","M","R","M","R","R","M"] }
+			instruction.rovers.should eq ({ rover1: { position: { x: 1, y: 2, heading: "N" }, moves: ["l","m","l","m","l","m","l","m","m"] },
+																		  rover2: { position: { x: 3, y: 3, heading: "E" }, moves: ["m","m","r","m","m","r","m","r","r","m"] }
 																	 })
 		end
 	end
