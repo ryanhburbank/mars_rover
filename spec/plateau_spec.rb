@@ -1,11 +1,17 @@
 require 'spec_helper'
 
 describe "Plateau" do
-	let (:instruction) { Instruction.new("lib/sample_input.txt") }
-	let (:plateau) { Plateau.new(instruction.dimensions) } 
 
 	describe "#new" do
+		let (:instruction) { Instruction.new("lib/sample_input.txt") }
+		let (:plateau) { Plateau.new(instruction.dimensions) } 
+		
 		context "takes a hash with a :rows keys and :columns key" do
+			
+			it "and returns a Plateau object" do
+				plateau.should be_an_instance_of Plateau 
+			end
+			
 			it "stores the :rows value in @rows" do
 				plateau.rows.should eq 6
 			end
