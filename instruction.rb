@@ -28,7 +28,7 @@ class Instruction
 
 	def format_position(position)
 		formatted_array = position.split(' ')
-		{ x: formatted_array[0].to_i, y: formatted_array[1].to_i, heading: formatted_array[2] } 
+		{ x: formatted_array[0].to_i, y: formatted_array[1].to_i, heading: formatted_array[2].downcase } 
 	end
 end
 
