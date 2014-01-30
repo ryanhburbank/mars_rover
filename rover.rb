@@ -4,7 +4,6 @@ class Rover
 	attr_reader :position, :current_heading
 	MOVE_VALUES  = { "n" => [0,1], "e" => [1,0], "s" => [0,-1], "w" => [-1,0] }
 	DIRECTIONS = [ "n", "e", "s", "w" ]
-	
 	def initialize(orders)
 		@position         = orders[:position]
 		@moves            = orders[:moves].each
@@ -12,14 +11,23 @@ class Rover
 		@current_heading  = @fiber.resume
 	end
 
-	def move!
+	def move_once!
 		begin
 			current_move = @moves.next
-			 self.send(current_move)
-			 @position
+			self.send(current_move)
+			@position
 		rescue
 			return "ALERT: NO MOVES REMAINING!"
 		end
+	end
+
+	def move_count
+		puts @moves.count
+	end
+
+	def move_all!
+		(@moves.to_a.length).times { move_once! }
+		@position
 	end
 
 	def moves
