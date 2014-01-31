@@ -21,3 +21,4 @@ describe "Instruction" do
 		end
 	end
 end
+

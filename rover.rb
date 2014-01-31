@@ -2,8 +2,10 @@ require 'fiber'
 
 class Rover
 	attr_reader :position, :current_heading
+	
 	MOVE_VALUES  = { "n" => [0,1], "e" => [1,0], "s" => [0,-1], "w" => [-1,0] }
 	DIRECTIONS = [ "n", "e", "s", "w" ]
+	
 	def initialize(orders)
 		@position            = orders[:position]
 		@moves               = orders[:moves].each
