@@ -19,7 +19,7 @@ describe "Rover" do
 			rover1.moves.should eq (["l","m","l","m","l","m","l","m","m"])
 		end
 	end
-
+  
 	describe "#move_once!" do
 		context "there are elements remaining in the moves array" do
 			it "updates the rover's position or heading by one move" do
@@ -33,6 +33,14 @@ describe "Rover" do
 				rover1.moves.count.times {|x| rover1.move_once! }
 				rover1.move_once!.should eq "ALERT: NO MOVES REMAINING!"
 			end 
+		end
+
+		context "the rover's next move would put it over the plateau's boundary" do
+			let (:edge_rover) { Rover.new( { position: { x: 0, y: 0, heading: "s" }, moves: ["m"], boundaries: { columns: 1, rows: 1 } }) }
+			it "returns 'ALERT: MOVE INVALID, PLATEAU BOUNDARY REACHED'" do
+				edge_rover.move_once!.should eq "ALERT: MOVE INVALID, PLATEAU BOUNDARY REACHED"
+				edge_rover.position.should eq ({ x: 0, y: 0, heading: "s" })
+			end
 		end
 	end
 

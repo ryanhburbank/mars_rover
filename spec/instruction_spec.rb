@@ -13,8 +13,10 @@ describe "Instruction" do
 		end
 
 		it "sets @rovers" do
-			instruction.rovers.should eq ({ rover1: { position: { x: 1, y: 2, heading: "n" }, moves: ["l","m","l","m","l","m","l","m","m"] },
-																		  rover2: { position: { x: 3, y: 3, heading: "e" }, moves: ["m","m","r","m","m","r","m","r","r","m"] }
+			instruction.rovers.should eq ({ rover1: { position: { x: 1, y: 2, heading: "n" }, moves: ["l","m","l","m","l","m","l","m","m"],
+																								boundaries: { columns: 6, rows: 6 } },
+																		  rover2: { position: { x: 3, y: 3, heading: "e" }, moves: ["m","m","r","m","m","r","m","r","r","m"],
+																		  					boundaries: { columns: 6, rows: 6 } }
 																	 })
 		end
 	end
