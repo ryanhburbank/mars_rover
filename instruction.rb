@@ -21,7 +21,8 @@ class Instruction
 		formatted_hash = {}
 		file.each_slice(2).with_index do |(position, moves), index|
 			formatted_hash["rover#{index + 1}".to_sym] = { position: format_position(position), 
-																										 moves:    moves.downcase.split('') }
+																										 moves:    moves.downcase.split(''),
+																										 boundaries:    @dimensions }
 		end
 		formatted_hash
 	end
