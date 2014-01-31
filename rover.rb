@@ -9,12 +9,13 @@ class Rover
 		@moves               = orders[:moves].each
 		@fiber               = set_fiber
 		@position[:heading]  = @fiber.resume
+		@boundaries          = orders[:boundaries]
 	end
 
 	def move_once!
 		begin
 			current_move = @moves.next
-			self.send(current_move)
+			return boundary_alert unless self.send(current_move)
 			@position
 		rescue
 			return "ALERT: NO MOVES REMAINING!"
@@ -42,8 +43,18 @@ class Rover
 
 	def m
 		values = MOVE_VALUES[@position[:heading]]
+		return false if boundary?(values)
 		@position[:x] += values[0]
 		@position[:y] += values[1]
+	end
+
+	def boundary?(values)
+	  boundary =   @position[:x] + values[0] > @boundaries[:columns] ||  @position[:x] + values[0] == -1  
+	  boundary ||= @position[:y] + values[1] > @boundaries[:rows]    ||  @position[:y] + values[1] == -1
+	end
+
+	def boundary_alert
+		"ALERT: MOVE INVALID, PLATEAU BOUNDARY REACHED"
 	end
 
 	def set_fiber
