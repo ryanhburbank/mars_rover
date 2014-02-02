@@ -19,4 +19,4 @@ class Interface
 	end
 end
 
-puts Interface.run
+p Interface.run
