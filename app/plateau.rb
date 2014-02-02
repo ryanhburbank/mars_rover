@@ -1,4 +1,4 @@
-require_relative './instruction'
+
 
 class Plateau 
 	attr_reader :rows, :columns
