@@ -1,9 +1,12 @@
 require 'spec_helper'
 
 describe "Rover" do 
-	let (:instructions) { Instruction.new("lib/sample_input.txt") }
-	let (:rover1) { Rover.new(instructions.rovers[:rover1]) }
-	let (:rover2) { Rover.new(instructions.rovers[:rover2])}
+	let (:rover1) { Rover.new({ position: { x: 1, y: 2, heading: "n" }, 
+															moves: ["l","m","l","m","l","m","l","m","m"],
+															boundaries: { columns: 6, rows: 6 } }) }
+	let (:rover2) { Rover.new({ position: { x: 3, y: 3, heading: "e" }, 
+															moves: ["m","m","r","m","m","r","m","r","r","m"],
+															boundaries: { columns: 6, rows: 6 } })}
 	
 	describe "#new" do
 		

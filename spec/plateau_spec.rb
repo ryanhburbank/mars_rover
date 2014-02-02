@@ -3,8 +3,7 @@ require 'spec_helper'
 describe "Plateau" do
 
 	describe "#new" do
-		let (:instruction) { Instruction.new("lib/sample_input.txt") }
-		let (:plateau) { Plateau.new(instruction.dimensions) } 
+		let (:plateau) { Plateau.new({ rows: 6, columns: 6 }) } 
 		
 		context "takes a hash with a :rows keys and :columns key" do
 			

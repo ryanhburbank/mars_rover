@@ -1,13 +1,17 @@
 require 'fiber'
+# require_relative './direction'
+# require_relative './compass'
 
 class Rover
 	attr_reader :position, :current_heading
+	
 	MOVE_VALUES  = { "n" => [0,1], "e" => [1,0], "s" => [0,-1], "w" => [-1,0] }
 	DIRECTIONS = [ "n", "e", "s", "w" ]
+	
 	def initialize(orders)
 		@position            = orders[:position]
 		@moves               = orders[:moves].each
-		@fiber               = set_fiber
+		@fiber               = start_fiber
 		@position[:heading]  = @fiber.resume
 		@boundaries          = orders[:boundaries]
 	end
@@ -57,7 +61,7 @@ class Rover
 		"ALERT: MOVE INVALID, PLATEAU BOUNDARY REACHED"
 	end
 
-	def set_fiber
+	def start_fiber
 		Fiber.new do 
 			iterator = DIRECTIONS.cycle
 			DIRECTIONS.index(@position[:heading]).times {|int| iterator.next }
@@ -67,3 +71,6 @@ class Rover
 		end
 	end
 end
+
+
+
