@@ -12,5 +12,4 @@ describe "Interface" do
 			Interface.run.should eq ("{:x=>1, :y=>3, :heading=>\"n\"} \n{:x=>5, :y=>1, :heading=>\"e\"} \n") 
 		end
 	end
-
 end

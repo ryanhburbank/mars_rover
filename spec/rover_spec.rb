@@ -1,4 +1,4 @@
-require 'spec_helper'
+require_relative '../app/rover'
 
 describe "Rover" do 
 	let (:rover1) { Rover.new({ position: { x: 1, y: 2, heading: "n" }, 
@@ -19,7 +19,7 @@ describe "Rover" do
 		end
 
 		it "sets @moves to the hash's :moves key" do
-			rover1.moves.should eq (["l","m","l","m","l","m","l","m","m"])
+			rover1.moves_list.should eq ("l, m, l, m, l, m, l, m, m")
 		end
 	end
   
@@ -33,7 +33,7 @@ describe "Rover" do
 		end
 		context "there are no elements remaining in the moves array" do
 			it "returns 'ALERT: NO MOVES REMAINING!' when called" do
-				rover1.moves.count.times {|x| rover1.move_once! }
+				rover1.moves_list.split(',').count.times { |x| rover1.move_once! }
 				rover1.move_once!.should eq "ALERT: NO MOVES REMAINING!"
 			end 
 		end

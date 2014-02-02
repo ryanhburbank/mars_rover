@@ -5,18 +5,25 @@ class Interface
 	def self.run
 			mission = Mission.new(ARGV[0]) if ARGV[0]
 			mission ||= Mission.new("./lib/sample_input2.txt")
-			move_rovers(mission.rovers)
+			make_rovers(mission.send_rover_orders)
 	end
 
 	private
-	def self.move_rovers(rover_orders)
+
+	def self.make_rovers(rover_orders)
+		rover_array = []
+		rover_orders.each_value {|orders| rover_array << Rover.new(orders) }
+		move_rovers(rover_array)
+	end
+
+	def self.move_rovers(rovers)
 		final_positions = ""
-		rover_orders.each_value do |orders|
-			rover = Rover.new(orders)
-			final_positions << "#{rover.move_all!} \n"
+		rovers.each do |rover|
+			rover.move_all!
+			final_positions << "#{rover.position} \n"
 		end
 		final_positions
 	end
 end
 
-p Interface.run
+puts Interface.run

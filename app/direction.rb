@@ -6,6 +6,10 @@ class North
   def left
   	West.new
   end
+
+  def move
+    [0,1]
+  end
 end
 
 class East
@@ -15,6 +19,10 @@ class East
 
   def left
     North.new
+  end
+
+  def move
+    [1,0]
   end
 end
 
@@ -26,6 +34,10 @@ class South
   def left
     East.new
   end
+
+  def move
+    [0,-1]
+  end
 end
 
 class West
@@ -35,5 +47,9 @@ class West
 
   def left
     South.new
+  end
+
+  def move
+    [-1,0]
   end
 end

@@ -9,11 +9,11 @@ describe "Mission" do
 		end
 
 		it "sets @dimensions" do
-			mission.dimensions.should eq ({ rows: 6, columns: 6 })
+			mission.plateau_dimensions.should eq ({ rows: 6, columns: 6 })
 		end
 
 		it "sets @rovers" do
-			mission.rovers.should eq ({ rover1: { position: { x: 1, y: 2, heading: "n" }, moves: ["l","m","l","m","l","m","l","m","m"],
+			mission.send_rover_orders.should eq ({ rover1: { position: { x: 1, y: 2, heading: "n" }, moves: ["l","m","l","m","l","m","l","m","m"],
 																								boundaries: { columns: 6, rows: 6 } },
 																		  rover2: { position: { x: 3, y: 3, heading: "e" }, moves: ["m","m","r","m","m","r","m","r","r","m"],
 																		  					boundaries: { columns: 6, rows: 6 } }

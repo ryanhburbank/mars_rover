@@ -2,12 +2,16 @@ require_relative './parser'
 
 class Mission 
 	include Parser
-	attr_reader :dimensions, :rovers
+	attr_reader :plateau_dimensions
 	
 	def initialize(file)
 		parsed_file         = parse(file)
-		@dimensions         = extract_dimensions(parsed_file)
-		@rovers             = extract_rovers(parsed_file)
+		@plateau_dimensions = extract_dimensions(parsed_file)
+		@rover_orders       = extract_rovers(parsed_file)
+	end
+
+	def send_rover_orders
+		@rover_orders
 	end
 
 	private
@@ -21,9 +25,9 @@ class Mission
 	def extract_rovers(array_of_rover_data)
 		formatted_hash = {}
 		array_of_rover_data.each_slice(2).with_index do |(position, moves), index|
-			formatted_hash["rover#{index + 1}".to_sym] = { position: extract_position(position), 
-																										 moves:    moves.downcase.split(''),
-																										 boundaries:    @dimensions }
+			formatted_hash["rover#{index + 1}".to_sym] = { position:   extract_position(position), 
+																										 moves:      moves.downcase.split(''),
+																										 boundaries: plateau_dimensions }
 		end
 		formatted_hash
 	end
