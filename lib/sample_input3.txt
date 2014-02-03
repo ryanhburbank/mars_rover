@@ -1,0 +1,7 @@
+10 10 
+5 5 N
+RMRRMMMLM
+9 0 W
+MMMRMMLLM
+
+

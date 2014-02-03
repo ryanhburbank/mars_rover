@@ -7,4 +7,5 @@ require_relative '../app/parser'
 require_relative '../app/plateau'
 require_relative '../app/rover'
 require_relative '../interface'
+require_relative '../app/compass'
 

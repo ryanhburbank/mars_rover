@@ -5,15 +5,21 @@ class Interface
 	def self.run
 			mission = Mission.new(ARGV[0]) if ARGV[0]
 			mission ||= Mission.new("./lib/sample_input2.txt")
-			make_rovers(mission.send_rover_orders)
+			plateau = make_plateau(mission.plateau_dimensions)
+			rovers  = make_rovers(mission.send_rover_orders, plateau)
+			move_rovers(rovers)
 	end
 
 	private
 
-	def self.make_rovers(rover_orders)
+	def self.make_plateau(dimensions)
+		Plateau.new(dimensions)
+	end
+
+	def self.make_rovers(rover_orders, plateau)
 		rover_array = []
-		rover_orders.each_value {|orders| rover_array << Rover.new(orders) }
-		move_rovers(rover_array)
+		rover_orders.each_value {|orders| rover_array << Rover.new(orders, plateau) }
+		rover_array
 	end
 
 	def self.move_rovers(rovers)

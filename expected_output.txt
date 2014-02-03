@@ -1,0 +1,34 @@
+sample 1
+5 5
+1 2 N
+LMLMLMLMM
+3 3 E
+MMRMMRMRRM
+_______________
+Expected Output
+1 3 N
+5 1 E
+
+
+sample 2
+
+2 2
+0 0 S
+LLMMMRMMRM
+__________
+Expected Output
+2 2 S
+
+
+
+sample 3
+
+10 10 
+5 5 N
+RMRRMMMLM
+9 0 W
+MMMRMMLLM
+_______________
+Expected Output
+3 4 S
+6 1 S
