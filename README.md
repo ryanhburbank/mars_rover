@@ -60,7 +60,7 @@ file_path parameter.
 parser.rb: module capable of parsing .txt, .csv, and .yml files into a formatted array. Will raise
 errors if file extention is not supported or if file is empty
 
-mission.rb: includes parser module, as is capable of taking either a file_path string or array as an argument.  Once array_of_orders has been set.  Extracts plateau dimensions and orders for all rovers(including current x & y position, heading, and all remaining moves and stores them in instance variables.
+mission.rb: includes parser module, as is capable of taking either a file_path string or array as an argument.  Once array_of_orders has been set.  Extracts plateau dimensions and orders for all rovers(including current x & y position, heading, and all remaining moves) and stores them in instance variables.
 
 plateau.rb: takes a hash with rows and columns keys as an argument when initialized.  
 
