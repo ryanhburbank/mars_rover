@@ -47,10 +47,15 @@ Expected Output:
 =================================
 note: all commands should be run from top-level directory
 Step 0: gem install bundler from command line(if not already installed)
+
 Step 1: run bundle install from your command line
+
 Step 2: bundle exec rspec will run the test suite
+
 Step 3: ruby interface.rb will run the application with the first set of sample inputs
+
 Step 4: ruby interface.rb <path_to_file_here> will run the application with the supplied file(.txt,.yml,.csv only) *note: files must be delimited by newline
+
 Step 5: Each rover's final position will be outputted the console.
 
 ##Code Analysis:
