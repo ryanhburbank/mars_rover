@@ -4,7 +4,7 @@ class Interface
 
 	def self.run
 			mission = Mission.new(ARGV[0]) if ARGV[0]
-			mission ||= Mission.new("./lib/sample_input2.txt")
+			mission ||= Mission.new("./lib/sample_input1.txt")
 			plateau = make_plateau(mission.plateau_dimensions)
 			rovers  = make_rovers(mission.send_rover_orders, plateau)
 			move_rovers(rovers)
@@ -28,8 +28,11 @@ class Interface
 			rover.move_all!
 			final_positions << "#{rover.position} \n"
 		end
+		puts final_positions
 		final_positions
 	end
 end
 
-puts Interface.run
+Interface.run
+
+

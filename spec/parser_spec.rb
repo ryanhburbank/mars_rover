@@ -14,40 +14,40 @@ describe "Parser" do
 		let (:placeholder) { Placeholder.new }
 
 		it "takes a .txt file and returns a properly formatted hash " do
-			placeholder.private_parse("lib/sample_input.txt").should eq correct_output
+			placeholder.private_parse("lib/sample_input1.txt").should eq correct_output
 		end
 
 		it "takes a .csv file and returns an Array " do
-			placeholder.private_parse("lib/sample_input.csv").should eq correct_output
+			placeholder.private_parse("lib/sample_input1.csv").should eq correct_output
 		end
 
 		it "takes a .yml file and returns an Array " do
-			placeholder.private_parse("lib/sample_input.yml").should eq correct_output
+			placeholder.private_parse("lib/sample_input1.yml").should eq correct_output
 		end
 
 		context "the passed file is empty & the filetype is supported" do
 			
 			it "raises an error if it is a csv file" do
-				lambda { placeholder.private_parse("lib/empty_input.csv") }.should raise_error(ArgumentError)
+				lambda { placeholder.private_parse("lib/empty_input1.csv") }.should raise_error(ArgumentError)
 			end
 			
 			it "raises an error if it is a yml file" do
-				lambda { placeholder.private_parse("lib/empty_input.yml") }.should raise_error(ArgumentError)
+				lambda { placeholder.private_parse("lib/empty_input1.yml") }.should raise_error(ArgumentError)
 			end
 			
 			it "raises an error if it a txt file" do	
-				lambda { placeholder.private_parse("lib/empty_input.txt") }.should raise_error(ArgumentError)
+				lambda { placeholder.private_parse("lib/empty_input1.txt") }.should raise_error(ArgumentError)
 			end
 		end
 
 		context "the passed file's extension is unsupported" do
 			
 			it "raises an error if file has contents" do
-				lambda { placeholder.private_parse("lib/empty_input.foo")}.should raise_error(ArgumentError)
+				lambda { placeholder.private_parse("lib/empty_input1.foo")}.should raise_error(ArgumentError)
 			end
 
 			it "raises an error if file is empty" do
-				lambda { placeholder.private_parse("lib/sample_input.foo")}.should raise_error(ArgumentError)
+				lambda { placeholder.private_parse("lib/sample_input1.foo")}.should raise_error(ArgumentError)
 			end
 		end
 	end

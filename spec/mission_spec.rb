@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe "Mission" do
-	let(:mission1) { Mission.new("lib/sample_input.txt") }
+	let(:mission1) { Mission.new("lib/sample_input1.txt") }
 	let(:mission2) { Mission.new(["3 2", "0 1 E", "LMMRM"])}
 
 	describe "#new" do
