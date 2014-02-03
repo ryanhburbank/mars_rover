@@ -30,7 +30,7 @@ The output for each rover should be its final co-ordinates and heading.
 INPUT AND OUTPUT
  
 Test Input:
-==========
+
 5 5
 1 2 N
 LMLMLMLMM
@@ -38,7 +38,7 @@ LMLMLMLMM
 MMRMMRMRRM
  
 Expected Output:
-==========
+
 1 3 N
 5 1 E
 
@@ -79,5 +79,11 @@ Gemfile: contains 'rpsec' gem
 
 correct_output.txt: contains the inputs and correct outputs for sample files
 
+##Assumptions:
+================
+A rover prioritizes self-preservation over completing an order(i.e will not go over the edge of a plateau)
+
+Each plateau will have only one rover on it at a time(i.e rover's will not crash into each other)
 
 
+Thank you for your time, it is very appreciated!
