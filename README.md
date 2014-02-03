@@ -1,4 +1,4 @@
- ThoughtWorks Coding Challenge #3: Mars Rover
+ #ThoughtWorks Coding Challenge #3: Mars Rover
  ============================================
  
 Solution by Ryan Burbank
@@ -29,6 +29,7 @@ The output for each rover should be its final co-ordinates and heading.
 INPUT AND OUTPUT
  
 Test Input:
+==========
 5 5
 1 2 N
 LMLMLMLMM
@@ -36,9 +37,10 @@ LMLMLMLMM
 MMRMMRMRRM
  
 Expected Output:
+==========
 1 3 N
 5 1 E
-==========
+
 
 ##Application Setup and Execution
 =================================
