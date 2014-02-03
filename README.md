@@ -1,6 +1,7 @@
  ThoughtWorks Coding Challenge #3: Mars Rover
  ============================================
- Solution by Ryan Burbank
+ 
+Solution by Ryan Burbank
 
 Challenge Description: 
 
