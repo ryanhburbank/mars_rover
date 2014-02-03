@@ -2,17 +2,13 @@ require_relative './parser'
 
 class Mission 
 	include Parser
-	attr_reader :plateau_dimensions
+	attr_reader :rover_orders, :plateau_dimensions
 	
 	def initialize(file_or_array)
 	  array_of_orders       = file_or_array if file_or_array.class == Array
 		array_of_orders       ||= parse(file_or_array)
 		@plateau_dimensions   = extract_dimensions(array_of_orders)
 		@rover_orders         = extract_rovers(array_of_orders)
-	end
-
-	def send_rover_orders
-		@rover_orders
 	end
 
 	private

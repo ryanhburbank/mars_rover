@@ -16,10 +16,10 @@ describe "Mission" do
 		end
 
 		it "sets @rovers" do
-			mission1.send_rover_orders.should eq ({ rover1: { position: { x: 1, y: 2, heading: "n" }, moves: ["l","m","l","m","l","m","l","m","m"]},
+			mission1.rover_orders.should eq ({ rover1: { position: { x: 1, y: 2, heading: "n" }, moves: ["l","m","l","m","l","m","l","m","m"]},
 																		  rover2: { position: { x: 3, y: 3, heading: "e" }, moves: ["m","m","r","m","m","r","m","r","r","m"]}
 																	 })
-			mission2.send_rover_orders.should eq ({ rover1: { position: { x: 0, y: 1, heading: "e" }, moves: ["l","m","m","r","m"]}})
+			mission2.rover_orders.should eq ({ rover1: { position: { x: 0, y: 1, heading: "e" }, moves: ["l","m","m","r","m"]}})
 		end
 	end
 end
