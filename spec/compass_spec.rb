@@ -2,8 +2,7 @@ require 'spec_helper'
 
 describe "Compass" do
 	let (:compass) { Compass.new({ "n" => [0,1], "e" => [1,0], "s" => [0,-1], "w" => [-1,0] })}
-	let (:compass2) { Compass.new({"n" => [0,1], "ne" => [1,1],"e" => [1,0], "se" => [1,-1],
-																 "s" => [0,-1], "sw" => [-1,-1], "w" => [-1,0], "nw" => [-1,1]})}
+	let (:compass2) { Compass.new({"n" => [0,1], "ne" => [1,1],"e" => [1,0], "se" => [1,-1], "s" => [0,-1], "sw" => [-1,-1], "w" => [-1,0], "nw" => [-1,1]})}
 	describe "#new" do
 		it "takes a hash of directions and returns an instance of compass" do
 			compass.should be_an_instance_of Compass
