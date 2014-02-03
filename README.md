@@ -1,4 +1,5 @@
- #ThoughtWorks Coding Challenge #3: Mars Rover
+ 
+ ##ThoughtWorks Coding Challenge 3: Mars Rover
  ============================================
  
 Solution by Ryan Burbank
