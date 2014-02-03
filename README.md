@@ -46,6 +46,7 @@ Expected Output:
 ##Application Setup and Execution
 =================================
 note: all commands should be run from top-level directory
+Step 0: gem install bundler from command line(if not already installed)
 Step 1: run bundle install from your command line
 Step 2: bundle exec rspec will run the test suite
 Step 3: ruby interface.rb will run the application with the first set of sample inputs
@@ -84,6 +85,8 @@ correct_output.txt: contains the inputs and correct outputs for sample files
 A rover prioritizes self-preservation over completing an order(i.e will not go over the edge of a plateau)
 
 Each plateau will have only one rover on it at a time(i.e rover's will not crash into each other)
+
+The reviewer has ruby installed on their machine
 
 ###Final Words:
 Thank you for your time, it is very appreciated!
