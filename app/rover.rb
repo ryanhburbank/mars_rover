@@ -1,76 +1,81 @@
-require 'fiber'
-# require_relative './direction'
-# require_relative './compass'
+require_relative './compass'
 
 class Rover
-	attr_reader :position, :current_heading
 	
-	MOVE_VALUES  = { "n" => [0,1], "e" => [1,0], "s" => [0,-1], "w" => [-1,0] }
-	DIRECTIONS = [ "n", "e", "s", "w" ]
+	DIRECTIONS  = { "n" => [0,1], "e" => [1,0], "s" => [0,-1], "w" => [-1,0] }
 	
-	def initialize(orders)
-		@position            = orders[:position]
+	def initialize(orders, plateau, direction_hash = nil)
+		@orders              = orders
 		@moves               = orders[:moves].each
-		@fiber               = start_fiber
-		@position[:heading]  = @fiber.resume
-		@boundaries          = orders[:boundaries]
+		@boundaries          = plateau.dimensions
+		
+		@compass             = Compass.new(direction_hash || DIRECTIONS)	
+		set_compass_to_heading
+	end
+
+	def position
+		@orders[:position]
+	end
+
+	def move_all!
+		move_count.times { move_once! }
+		@orders[:position]
+	end
+
+	def moves_list
+		"#{@moves.to_a.join(', ')}"
+	end
+
+	private
+
+	def set_compass_to_heading
+		@compass.set_current_heading(@orders[:position][:heading])
 	end
 
 	def move_once!
 		begin
 			current_move = @moves.next
-			return boundary_alert unless self.send(current_move)
-			@position
+			case current_move
+			when "l"
+				@orders[:position][:heading] = @compass.turn_left!
+			when "r"
+				@orders[:position][:heading] = @compass.turn_right!
+			when "m"
+				return boundary_alert unless move_forward!
+			else
+				return "Move '#{current_move}' is invalid!"
+			end
+			@orders[:position]
 		rescue
 			return "ALERT: NO MOVES REMAINING!"
 		end
 	end
-
-	def move_all!
-		moves.length.times { move_once! }
-		@position
+	
+	def move_count
+		@moves.to_a.count
 	end
 
-	def moves
-		@moves.to_a
-	end
-
-	private
-	def l
-		2.times { |int| @fiber.resume }
-		@position[:heading] = @fiber.resume
-	end
-
-	def r
-		@position[:heading] = @fiber.resume
-	end
-
-	def m
-		values = MOVE_VALUES[@position[:heading]]
+	def move_forward!
+		values = @compass.current_move
 		return false if boundary?(values)
-		@position[:x] += values[0]
-		@position[:y] += values[1]
+		@orders[:position][:x] += values[0]
+		@orders[:position][:y] += values[1]
 	end
 
 	def boundary?(values)
-	  boundary =   @position[:x] + values[0] > @boundaries[:columns] ||  @position[:x] + values[0] == -1  
-	  boundary ||= @position[:y] + values[1] > @boundaries[:rows]    ||  @position[:y] + values[1] == -1
+	  boundary =   column_boundary?(values[0])
+	  boundary ||= row_boundary?(values[1])
+	end
+
+	def column_boundary?(x_value)
+		@orders[:position][:x] + x_value > @boundaries[:columns] ||  @orders[:position][:x] + x_value == -1
+	end
+
+	def row_boundary?(y_value)
+		@orders[:position][:y] + y_value > @boundaries[:rows]    ||  @orders[:position][:y] + y_value == -1
 	end
 
 	def boundary_alert
 		"ALERT: MOVE INVALID, PLATEAU BOUNDARY REACHED"
 	end
-
-	def start_fiber
-		Fiber.new do 
-			iterator = DIRECTIONS.cycle
-			DIRECTIONS.index(@position[:heading]).times {|int| iterator.next }
-			while iterator
-				Fiber.yield iterator.next
-			end
-		end
-	end
 end
-
-
-

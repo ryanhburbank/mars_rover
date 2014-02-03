@@ -1,4 +1,5 @@
 require 'spec_helper'
+
 class Placeholder
  include Parser
 

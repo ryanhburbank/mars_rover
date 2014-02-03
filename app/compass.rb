@@ -1,21 +1,34 @@
 class Compass
 
-	def initialize(array_of_directions)
-		@array          = array_of_directions
-		@direction      = array.cycle
-		@current_facing = @direction.next
+	def initialize(hash_of_directions)
+		@directions_count = hash_of_directions.length
+		@directions       = hash_of_directions.cycle
+		@current_facing   = @directions.next
 	end
 
-	def turn_right
-		@current_facing = @direction.next
+	def set_current_heading(heading)
+		until @current_facing[0] == heading
+			turn_right!
+		end
+		current_direction
 	end
 
-	def turn_left
-		(@array.length - 2).times {|int| @direction.next }
-		@current_facing = @direction.next
+	def turn_right!
+		@current_facing = @directions.next
+		current_direction
+	end
+
+	def turn_left!
+		(@directions_count - 2).times {|int| @directions.next }
+		@current_facing = @directions.next
+		current_direction
 	end
 
 	def current_direction
-		"#{@current_facing.upcase}"
+		"#{@current_facing[0]}"
+	end
+
+	def current_move
+		@current_facing[1]
 	end
 end

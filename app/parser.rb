@@ -13,29 +13,35 @@ module Parser
 	end
 
 	def ext_error(file)
-		raise ArgumentError, "Error: (#{File.extname(file)}) extension is not supported!"
+		raise ArgumentError, "Error: '#{File.extname(file)}' extension is not supported!"
 	end
 
 	def empty_error(file)
-		raise ArgumentError, "Error: (#{file}) is empty!"
+		raise ArgumentError, "Error: '#{file}' is empty!"
 	end
 
 	def parse_csv(file)
 		output = []
 		CSV.foreach(file) { |row| output << row[0] }
-		output.empty? ? empty_error(file) : output
+		final_output(output, file)
 	end
 
 	def parse_txt(file)
 		txt_file = File.open(file,"r")
 		output   = txt_file.readlines
 		txt_file.close
-		output.empty? ? empty_error(file) : output.map {|e| e.sub("\n","")}
+		final_output(output, file)
 	end
 
 	def parse_yml(file)
 		output = YAML.load_file(file) || []
-		output.empty? ? empty_error(file) : output
+		final_output(output, file)
+	end
+
+	def final_output(output, file_path)
+		output.reject!(&:nil?)
+		output.map! {|e| e.sub("\n","")}
+		output.empty? ? empty_error(file_path) : output.reject(&:empty?)
 	end
 end
 
