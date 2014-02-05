@@ -1,5 +1,7 @@
 require 'rubygems'
 require 'bundler/setup'
+require 'simplecov'
+SimpleCov.start
 Bundler.require
 
 require_relative '../app/mission'

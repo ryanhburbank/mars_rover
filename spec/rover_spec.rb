@@ -5,7 +5,6 @@ describe "Rover" do
 															moves: ["l","m","l","m","l","m","l","m","m"] }, Plateau.new({columns: 6, rows: 6 })) }
 	let (:rover2) { Rover.new({ position: { x: 3, y: 3, heading: "e" }, 
 															moves: ["m","m","r","m","m","r","m","r","r","m"] }, Plateau.new({columns: 6, rows: 6}))}
-	
 	describe "#new" do
 		
 		it "takes a hash and returns a Rover object" do
@@ -38,6 +37,13 @@ describe "Rover" do
 				rover1.moves_list.split(',').count.times { |x| rover1.send("move_once!") }
 				rover1.send("move_once!").should eq "ALERT: NO MOVES REMAINING!"
 			end 
+		end
+
+		context "the next move is invalid" do
+			let (:invalid_rover) { Rover.new({ position: { x: 3, y: 3, heading: "e" }, moves: ["i","m","r","m","m","r","m","r","r","m"] }, Plateau.new({columns: 6, rows: 6}))}
+			it "returns 'Move <current_move> is invalid!" do
+				invalid_rover.send("move_once!").should eq "Move 'i' is invalid!"
+			end
 		end
 
 		context "the rover's next move would put it over the plateau's boundary" do
